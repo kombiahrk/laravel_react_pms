@@ -16,6 +16,9 @@ class ProjectController extends Controller
     {
         $query = Project::query();
 
+        $sortField = request("sort_feild", "created_at");
+        $sortDirection = request('sort_direction', "desc");
+
         if (request("name")) {
             $query->where("name", "like", "%" . request("name") . "%");
         }
@@ -25,7 +28,7 @@ class ProjectController extends Controller
         }
 
         // Retrieve projects data and paginate the results
-        $projects = $query->paginate(10);
+        $projects = $query->orderBy($sortField, $sortDirection)->paginate(10);
 
         // Return the "Project/Index" view along with the projects data collection
         return inertia("Project/Index", [
