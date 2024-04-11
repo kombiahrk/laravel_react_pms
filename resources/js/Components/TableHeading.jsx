@@ -17,12 +17,12 @@ const TableHeading = ({
                     <div>
                         <ChevronUpIcon className={
                             "w-4 " +
-                            (sort_feild === (name) && sort_direction === 'asc' ? 'text-white' : '')
+                            (sort_feild === name && sort_direction === 'asc' ? 'text-white' : '')
                         }
                         />
                         <ChevronDownIcon className={
                             "w-4 -mt-2 " +
-                            (sort_feild === (name) && sort_direction === 'desc' ? 'text-white' : '')
+                            (sort_feild === name && sort_direction === 'desc' ? 'text-white' : '')
                         }
                         />
                     </div>
