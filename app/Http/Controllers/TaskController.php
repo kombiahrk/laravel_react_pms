@@ -14,13 +14,19 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $query = Task::query();
+        $query = Task::query()->with('project');
 
         $sortField = request("sort_feild", "created_at");
         $sortDirection = request('sort_direction', "desc");
 
-        if (request("name")) {
-            $query->where("name", "like", "%" . request("name") . "%");
+        if (request("project_name")) {
+            $query->whereHas('project', function ($query) {
+                $query->where("name", "like", "%" . request("project_name") . "%");
+            });
+        }
+
+        if (request("task_name")) {
+            $query->where("name", "like", "%" . request("task_name") . "%");
         }
 
         if (request("status")) {
