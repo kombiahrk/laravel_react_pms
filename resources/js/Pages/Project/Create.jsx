@@ -4,7 +4,7 @@ import SelectInput from '@/Components/SelectInput'
 import TextAreaInput from '@/Components/TextAreaInput'
 import TextInput from '@/Components/TextInput'
 import Authenticated from '@/Layouts/AuthenticatedLayout'
-import { Head, useForm } from '@inertiajs/react'
+import { Head, Link, useForm } from '@inertiajs/react'
 import React from 'react'
 
 const Create = ({ auth }) => {
@@ -17,7 +17,7 @@ const Create = ({ auth }) => {
     })
     const onSubmit = (e) => {
         e.preventDefault();
-        post(route('project.create'));
+        post(route('project.store'));
     };
     return (
         <Authenticated
@@ -109,6 +109,17 @@ const Create = ({ auth }) => {
                                     <option value="completed">Completed</option>
                                 </SelectInput>
                                 <InputError message={errors.status} className="mt-2" />
+                            </div>
+                            <div className='mt-4 text-right'>
+                                <Link
+                                    href={route("project.index")}
+                                    className='bg-gray-100 py-1 px-3 text-gray-800 rounded hover:bg-gray-300 mr-2'
+                                >
+                                    Cancel
+                                </Link>
+                                <button className='bg-emerald-500 text-white px-3 py-1 rounded hover:bg-emerald-600'>
+                                    Submit
+                                </button>
                             </div>
                         </form>
                     </div>
