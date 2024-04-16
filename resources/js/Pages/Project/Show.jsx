@@ -15,8 +15,8 @@ const Show = ({ auth, project, tasks, queryParams }) => {
         >
             <Head title={`Project "${project.name}"`} />
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div className="py-6">
+                <div className="max-w-9xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div>
                             <img src={project.image_path} alt={project.name} className='w-full h-64 object-cover' />
