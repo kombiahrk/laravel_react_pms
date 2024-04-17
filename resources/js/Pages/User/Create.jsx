@@ -41,6 +41,7 @@ const Create = ({ auth }) => {
                                     type="text"
                                     name="name"
                                     value={data.name}
+                                    isFocused={true}
                                     className="mt-1 block w-full"
                                     onChange={(e) => setData('name', e.target.value)}
                                 />
