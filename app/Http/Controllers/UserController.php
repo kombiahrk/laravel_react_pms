@@ -52,6 +52,8 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
+        $data['email_verified_at'] = time();
+
         $data['password'] = bcrypt($data['password']);
 
         User::create($data);
