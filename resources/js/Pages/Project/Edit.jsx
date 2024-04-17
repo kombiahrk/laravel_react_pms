@@ -13,8 +13,10 @@ const Edit = ({ auth, project }) => {
         name: project.name || '',
         description: project.description || '',
         status: project.status || '',
-        due_date: project.due_date || ''
-    })
+        due_date: project.due_date || '',
+        _method: 'PUT'
+    });
+
     const onSubmit = (e) => {
         e.preventDefault();
         post(route("project.update", project.id));
