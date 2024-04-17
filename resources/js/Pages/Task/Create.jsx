@@ -7,12 +7,15 @@ import Authenticated from '@/Layouts/AuthenticatedLayout'
 import { Head, Link, useForm } from '@inertiajs/react'
 import React from 'react'
 
-const Create = ({ auth }) => {
+const Create = ({ auth, projects, users }) => {
     const { data, setData, post, errors, reset } = useForm({
         image: '',
         name: '',
         description: '',
         status: '',
+        priority: '',
+        project_id: '',
+        assigned_user_id: '',
         due_date: ''
     });
 
@@ -35,6 +38,25 @@ const Create = ({ auth }) => {
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <form onSubmit={onSubmit} className="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                             <div>
+                                <InputLabel
+                                    htmlFor="project_id"
+                                    value="Project"
+                                />
+                                <SelectInput
+                                    id="project_id"
+                                    name="project_id"
+                                    value={data.project_id}
+                                    className="mt-1 block w-full"
+                                    onChange={(e) => setData('project_id', e.target.value)}
+                                >
+                                    <option value="">Select Project</option>
+                                    {projects.data.map(project => (
+                                        <option value={project.id}>{project.name}</option>
+                                    ))}
+                                </SelectInput>
+                                <InputError message={errors.project_id} className="mt-2" />
+                            </div>
+                            <div className='mt-4'>
                                 <InputLabel
                                     htmlFor="task_image_path"
                                     value="Task Image"
@@ -110,6 +132,44 @@ const Create = ({ auth }) => {
                                     <option value="completed">Completed</option>
                                 </SelectInput>
                                 <InputError message={errors.status} className="mt-2" />
+                            </div>
+                            <div className='mt-4'>
+                                <InputLabel
+                                    htmlFor="task_priority"
+                                    value="Task Priority"
+                                />
+                                <SelectInput
+                                    id="task_priority"
+                                    name="priority"
+                                    value={data.priority}
+                                    className="mt-1 block w-full"
+                                    onChange={(e) => setData('priority', e.target.value)}
+                                >
+                                    <option value="">Select Priority</option>
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                </SelectInput>
+                                <InputError message={errors.priority} className="mt-2" />
+                            </div>
+                            <div className='mt-4'>
+                                <InputLabel
+                                    htmlFor="assigned_user_id"
+                                    value="Assigned User"
+                                />
+                                <SelectInput
+                                    id="assigned_user_id"
+                                    name="assigned_user_id"
+                                    value={data.assigned_user_id}
+                                    className="mt-1 block w-full"
+                                    onChange={(e) => setData('assigned_user_id', e.target.value)}
+                                >
+                                    <option value="">Select User</option>
+                                    {users.data.map(user => (
+                                        <option value={user.id}>{user.name}</option>
+                                    ))}
+                                </SelectInput>
+                                <InputError message={errors.assigned_user_id} className="mt-2" />
                             </div>
                             <div className='mt-4 text-right'>
                                 <Link
