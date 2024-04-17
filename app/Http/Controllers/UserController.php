@@ -100,6 +100,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $userName = $user->name;
+        $user->delete();
+        return to_route('user.index')->with("success", "User " . $userName . " deleted successfully.");
     }
 }
