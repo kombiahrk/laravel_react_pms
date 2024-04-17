@@ -58,8 +58,8 @@ class ProjectController extends Controller
         $image = $data['image'] ?? null;
         $data['created_by'] = Auth::id();
         $data['updated_by'] = Auth::id();
-        if($image){
-           $data['image_path'] = $image->store('project/'.Str::random(), 'public');
+        if ($image) {
+            $data['image_path'] = $image->store('project/' . Str::random(), 'public');
         }
         Project::create($data);
 
