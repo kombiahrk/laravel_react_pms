@@ -17,7 +17,7 @@ const Edit = ({ auth, project }) => {
     })
     const onSubmit = (e) => {
         e.preventDefault();
-        post(route('project.store'));
+        post(route("project.update", project.id));
     };
     return (
         <Authenticated
