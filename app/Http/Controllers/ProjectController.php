@@ -122,6 +122,6 @@ class ProjectController extends Controller
             Storage::disk('public')->deleteDirectory(dirname($project->image_path));
         }
         $project->delete();
-        return to_route('project.index')->with("success", "Project ".$projectName." deleted successfully.");
+        return to_route('project.index')->with("success", "Project " . $projectName . " deleted successfully.");
     }
 }
