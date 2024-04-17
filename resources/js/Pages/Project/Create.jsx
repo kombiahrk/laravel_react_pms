@@ -14,11 +14,13 @@ const Create = ({ auth }) => {
         description: '',
         status: '',
         due_date: ''
-    })
+    });
+
     const onSubmit = (e) => {
         e.preventDefault();
         post(route('project.store'));
     };
+
     return (
         <Authenticated
             user={auth.user}
