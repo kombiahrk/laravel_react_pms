@@ -51,7 +51,7 @@ const Create = ({ auth, projects, users }) => {
                                 >
                                     <option value="">Select Project</option>
                                     {projects.data.map(project => (
-                                        <option value={project.id}>{project.name}</option>
+                                        <option value={project.id} key={project.id}>{project.name}</option>
                                     ))}
                                 </SelectInput>
                                 <InputError message={errors.project_id} className="mt-2" />
@@ -166,7 +166,7 @@ const Create = ({ auth, projects, users }) => {
                                 >
                                     <option value="">Select User</option>
                                     {users.data.map(user => (
-                                        <option value={user.id}>{user.name}</option>
+                                        <option value={user.id} key={user.id}>{user.name}</option>
                                     ))}
                                 </SelectInput>
                                 <InputError message={errors.assigned_user_id} className="mt-2" />
