@@ -135,4 +135,38 @@ class TaskController extends Controller
         $task->delete();
         return to_route('task.index')->with("success", "Task " . $taskName . " deleted successfully.");
     }
+
+    public function myTasks()
+    {
+        $user = auth()->user();
+
+        $query = Task::query()->with('project')->where('assigned_user_id', $user->id);
+
+        $sortField = request("sort_feild", "created_at");
+        $sortDirection = request('sort_direction', "desc");
+
+        if (request("project_name")) {
+            $query->whereHas('project', function ($query) {
+                $query->where("name", "like", "%" . request("project_name") . "%");
+            });
+        }
+
+        if (request("task_name")) {
+            $query->where("name", "like", "%" . request("task_name") . "%");
+        }
+
+        if (request("status")) {
+            $query->where("status", request("status"));
+        }
+
+        // Retrieve tasks data and paginate the results
+        $tasks = $query->orderBy($sortField, $sortDirection)->paginate(10);
+
+        // Return the "Task/Index" view along with the tasks data collection
+        return inertia("Task/Index", [
+            "tasks" => TaskResource::collection($tasks),
+            "queryParams" => request()->query() ?: null,
+            'success' => session('success'),
+        ]);
+    }
 }
