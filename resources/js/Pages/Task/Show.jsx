@@ -2,9 +2,8 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import { TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP } from '@/constants'
 import { Head } from '@inertiajs/react'
 import React from 'react'
-import TasksTable from '../Task/TasksTable'
 
-const Show = ({ auth, task, tasks, queryParams }) => {
+const Show = ({ auth, task}) => {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -69,15 +68,6 @@ const Show = ({ auth, task, tasks, queryParams }) => {
                 </div>
             </div>
 
-            <div className="py-12">
-                <div className="max-w-9xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900 dark:text-gray-100">
-                            <TasksTable tasks={tasks} queryParams={queryParams} hideTaskColumn={true} />
-                        </div>
-                    </div>
-                </div>
-            </div>
         </AuthenticatedLayout>
     )
 }
