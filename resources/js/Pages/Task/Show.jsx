@@ -8,9 +8,17 @@ const Show = ({ auth, task }) => {
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    {`Task "${task.name}"`}
-                </h2>}
+                <div className='flex items-center justify-between'>
+                    <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                        {`Task "${task.name}"`}
+                    </h2>
+                    <Link className="bg-emerald-500 text-white px-3 py-1 rounded hover:bg-emerald-600"
+                        href={route('task.edit', task.id)}
+                    >
+                        Edit
+                    </Link>
+                </div>
+            }
         >
             <Head title={`Task "${task.name}"`} />
 
