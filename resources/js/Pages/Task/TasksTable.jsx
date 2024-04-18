@@ -102,6 +102,7 @@ const TasksTable = ({ tasks, queryParams = null, hideProjectColumn = false, succ
                                 Due Date
                             </TableHeading>
                             <th className="px-3 py-3">Created By</th>
+                            <th className="px-3 py-3">Assigned To</th>
                             <th className="px-3 py-3 text-right">Actions</th>
                         </tr>
                     </thead>
@@ -145,6 +146,7 @@ const TasksTable = ({ tasks, queryParams = null, hideProjectColumn = false, succ
                             <th className="px-3 py-3"></th>
                             <th className="px-3 py-3"></th>
                             <th className="px-3 py-3"></th>
+                            <th className="px-3 py-3"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -168,6 +170,7 @@ const TasksTable = ({ tasks, queryParams = null, hideProjectColumn = false, succ
                                 <td className="px-3 py-2 text-nowrap">{task.created_at}</td>
                                 <td className="px-3 py-2 text-nowrap">{task.due_date}</td>
                                 <td className="px-3 py-2">{task.createdBy.name}</td>
+                                <td className="px-3 py-2">{task.assignedUser.name}</td>
                                 <td className="px-3 py-2 text-nowrap">
                                     <Link href={route('task.edit', task.id)}
                                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-1">
