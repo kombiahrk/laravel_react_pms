@@ -9,6 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class TaskResource extends JsonResource
 {
+    public static $wrap = false;
     /**
      * Transform the resource into an array.
      *
@@ -26,7 +27,9 @@ class TaskResource extends JsonResource
             'priority' => $this->priority,
             'image_path' => $this->image_path ? Storage::url($this->image_path) : '',
             'project' => new ProjectResource($this->project),
+            'project_id' => $this->project_id,
             'assignedUser' => $this->assignedUser ? new UserResource($this->assignedUser) : null,
+            'assigned_user_id' => $this->assigned_user_id,
             'createdBy' => new UserResource($this->createdBy),
             'updatedBy' => new UserResource($this->updatedBy),
         ];
