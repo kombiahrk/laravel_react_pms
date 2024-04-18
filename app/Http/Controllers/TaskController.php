@@ -112,8 +112,12 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
+        $projects = Project::query()->orderBy('name', 'asc')->get();
+        $users = User::all();
         return inertia("Task/Edit", [
             "task" => new TaskResource($task),
+            'projects' => ProjectResource::collection($projects),
+            'users' => UserResource::collection($users),
         ]);
     }
 
