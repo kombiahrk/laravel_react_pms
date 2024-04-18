@@ -1,9 +1,9 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import { TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP } from '@/constants'
-import { Head } from '@inertiajs/react'
+import { TASK_PRIORITY_CLASS_MAP, TASK_PRIORITY_TEXT_MAP, TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP } from '@/constants'
+import { Head, Link } from '@inertiajs/react'
 import React from 'react'
 
-const Show = ({ auth, task}) => {
+const Show = ({ auth, task }) => {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -40,12 +40,32 @@ const Show = ({ auth, task}) => {
                                         </p>
                                     </div>
                                     <div className='mt-4'>
+                                        <label className='font-bold text-lg'>Task Priority</label>
+                                        <p className='mt-1'>
+                                            <span className={"px-2 py-1 rounded text-white " + TASK_PRIORITY_CLASS_MAP[task.priority]}>
+                                                {TASK_PRIORITY_TEXT_MAP[task.priority]}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div className='mt-4'>
                                         <label className='font-bold text-lg'>Created By</label>
                                         <p className='mt-1'>{task.createdBy.name}</p>
                                     </div>
                                 </div>
                                 <div>
                                     <div>
+                                        <label className='font-bold text-lg'>Project Name</label>
+                                        <p className='mt-1 hover:underline hover:text-white'>
+                                            <Link href={route('project.show', task.project.id)}>
+                                                {task.project.name}
+                                            </Link>
+                                        </p>
+                                    </div>
+                                    <div className='mt-4'>
+                                        <label className='font-bold text-lg'>Assigned to User</label>
+                                        <p className='mt-1'>{task.assignedUser.name}</p>
+                                    </div>
+                                    <div className='mt-4'>
                                         <label className='font-bold text-lg'>Created Date</label>
                                         <p className='mt-1'>{task.created_at}</p>
                                     </div>
